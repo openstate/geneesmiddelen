@@ -5,6 +5,7 @@ import os
 import re
 from glob import glob
 from pprint import pprint
+import json
 
 import requests
 from lxml import etree
@@ -61,13 +62,16 @@ def _parse_file(file_path):
                     'Registratienummer': cell_text,
                     'Artikelnaam': u''.join(r.xpath('./td[2]//text()')).strip()
                 })
-    pprint((n, len(result),))
+    return result
 
 def main(argv):
     file_paths = get_files()
     for file_path in sorted(file_paths):
         print(file_path)
-        _parse_file(file_path)
+        data = _parse_file(file_path)
+        json_path = file_path.replace('.html', '.json')
+        with open(json_path, 'w') as out_file:
+            json.dump(data, out_file)
     return 0
 
 if __name__ == '__main__':
