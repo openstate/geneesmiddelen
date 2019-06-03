@@ -15,8 +15,9 @@ The actual data files are the json files in the `data` directory. The instructio
 
 1. `docker exec -it docker_geneesmiddelen_1 bash`
 2. `cd /opt/gm/bin`
-3. `./fetch.py`
-4. `./parse.py`
+3. `./get_urls.py >../urls.txt`
+4. `./fetch.py`
+5. `./parse.py`
 
 # contact
 
