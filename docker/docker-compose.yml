@@ -1,0 +1,17 @@
+version: "3.1"
+services:
+   geneesmiddelen:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ../:/opt/gm
+    networks:
+      - gm
+      - nginx-load-balancer
+    restart: always
+networks:
+  gm:
+  nginx-load-balancer:
+    external:
+      name: docker_nginx-load-balancer
