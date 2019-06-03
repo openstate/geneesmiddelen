@@ -4,7 +4,7 @@ Om te werken met de maximum geneesmiddelen prijzen
 
 # installation
 
-1. `cd docker && docker-compose build<
+1. `cd docker && docker-compose build`
 2. `docker-compose up -d`
 
 # data
