@@ -10,8 +10,11 @@ import json
 import requests
 from lxml import etree
 
-def get_files():
-    return glob('../data/*.html')
+def get_files(argv):
+    if len(argv) > 1:
+        return [argv[1]]
+    else:
+        return glob('../data/*.html')
 
 def _parse_file(file_path):
     with open(file_path) as in_file:
@@ -26,6 +29,8 @@ def _parse_file(file_path):
         for r in t.xpath('./table/tbody/tr'):
             # if u''.join(r.xpath('.//td//text()')).strip() == 'Productgroep':
             cell_text = u''.join(r.xpath('./td[1]//text()')).strip()
+            if cell_text == '':
+                continue
             if cell_text == 'Productgroep':
                 n += 1
                 if cur is not None:
@@ -65,7 +70,7 @@ def _parse_file(file_path):
     return result
 
 def main(argv):
-    file_paths = get_files()
+    file_paths = get_files(argv)
     for file_path in sorted(file_paths):
         print(file_path)
         data = _parse_file(file_path)
