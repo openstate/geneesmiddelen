@@ -55,7 +55,7 @@ def _parse_file(file_path):
                 else:
                     unit = 'Onbekend'
                     price = cell_text.replace(' per', '')
-                cur['Maximumprijs'] = price.strip()
+                cur['Maximumprijs'] = price.strip().replace(",",".")
                 cur['Eenheid'] = unit.strip()
                 p += 1
                 continue
