@@ -67,6 +67,8 @@ def _parse_file(file_path):
                     'Registratienummer': cell_text,
                     'Artikelnaam': u''.join(r.xpath('./td[2]//text()')).strip()
                 })
+        if cur is not None:
+            result.append(cur)
     return result
 
 def main(argv):
